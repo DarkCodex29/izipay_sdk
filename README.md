@@ -23,7 +23,7 @@ Supports card payments and Yape on both platforms.
 
 ```yaml
 dependencies:
-  izipay_sdk: ^1.0.1
+  izipay_sdk: ^1.0.2
 ```
 
 ### Android setup
