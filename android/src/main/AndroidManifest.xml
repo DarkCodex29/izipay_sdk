@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="dev.darkcodex.izipay_sdk">
+
+    <!-- Override ContainerActivity from izipay-sdk to prevent activity recreation
+         on configuration changes. Without this, the activity gets destroyed and
+         recreated (seen as double "Schedule relaunch activity" in logcat), which
+         kills the in-flight sendLoad API call and causes COMMUNICATION_ERROR. -->
+    <application>
+        <activity
+            android:name="com.izipay.izipay_pw_sdk.ui.fullscreend.ContainerActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden|keyboard|screenLayout|smallestScreenSize|locale|layoutDirection|fontScale|uiMode|density"
+            tools:replace="android:configChanges" />
+    </application>
+
+</manifest>

@@ -1,0 +1,13 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+build/
+*.iml
+*.log
+.DS_Store
+**/.DS_Store
+android/.gradle
+android/local.properties
+android/libs/izipay-sdk-2.3.0.aar.backup

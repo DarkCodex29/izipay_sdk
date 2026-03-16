@@ -1,0 +1,27 @@
+name: izipay_sdk
+description: Flutter plugin for the official Izipay Android and iOS SDKs. Supports card payments and Yape on both platforms.
+version: 1.0.2
+homepage: https://github.com/DarkCodex29/izipay_sdk
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.darkcodex.izipay_sdk
+        pluginClass: FlutterIzipayPlugin
+      ios:
+        pluginClass: FlutterIzipayPlugin

@@ -1,0 +1,111 @@
+group = "dev.darkcodex.izipay_sdk"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    ext.kotlin_version = "1.8.22"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+            dirs project(':izipay_sdk').file('libs')
+        }
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    if (project.android.hasProperty("namespace")) {
+        namespace = "dev.darkcodex.izipay_sdk"
+    }
+
+    compileSdk = 36
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    defaultConfig {
+        minSdk = 21
+    }
+
+    dependencies {
+        implementation(name: 'izipay-sdk-2.3.0', ext: 'aar')
+        implementation(name: 'TMXAuthentication-rl-7.7-71', ext: 'aar')
+        implementation(name: 'TMXBehavioSec-rl-7.7-71', ext: 'aar')
+        implementation(name: 'TMXDeviceSecurityHealth-rl-7.7-71', ext: 'aar')
+        implementation(name: 'TMXProfiling-rl-7.7-71', ext: 'aar')
+        implementation(name: 'TMXProfilingConnections-rl-7.7-71', ext: 'aar')
+        implementation(name: 'sonic-sdk-release-1.4.0', ext: 'aar')
+        implementation(name: 'visa-sensory-branding-2.1', ext: 'aar')
+        
+        // Dependencies matching Izipay SDK v2.3.0 libs.versions.toml
+        implementation 'androidx.core:core-ktx:1.15.0'
+        implementation 'androidx.appcompat:appcompat:1.7.0'
+        implementation 'com.google.android.material:material:1.12.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+        implementation 'androidx.navigation:navigation-fragment-ktx:2.8.5'
+        implementation 'androidx.navigation:navigation-ui-ktx:2.8.5'
+
+        implementation "com.github.skydoves:balloon:1.5.2"
+        implementation "com.github.skydoves:powerspinner:1.2.4"
+
+        implementation "com.google.dagger:hilt-android:2.55"
+
+        implementation 'com.google.code.gson:gson:2.11.0'
+
+        implementation "com.squareup.retrofit2:retrofit:2.9.0"
+        implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+        implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
+        implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.8.7"
+
+        // SDK uses saschpe.kase64 for Base64 encoding
+        implementation "de.peilicke.sascha:kase64:1.0.6"
+
+        // SDK uses kotlinx-coroutines for async operations
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+
+        implementation 'com.github.bumptech.glide:glide:4.14.2'
+        annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+        testImplementation("org.mockito:mockito-core:5.0.0")
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}

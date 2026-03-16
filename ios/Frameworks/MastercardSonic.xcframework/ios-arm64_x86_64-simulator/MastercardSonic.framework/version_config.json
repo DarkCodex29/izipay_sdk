@@ -1,0 +1,22 @@
+[
+    {
+        "sdk_versions": [
+            "1.5.2"
+        ],
+        "cues": {
+            "checkout": {
+                "version": "1.0.1",
+                "filepath": "cues/checkout/1.0.1"
+            },
+            "securedby": {
+                "version": "1.0.0",
+                "filepath": "cues/securedby/1.0.0"
+            }
+        },
+        "analytics": {
+            "enable": true,
+            "frequency": "M",
+            "url": "https://api.mixpanel.com/track?verbose=1"
+        }
+    }
+]
